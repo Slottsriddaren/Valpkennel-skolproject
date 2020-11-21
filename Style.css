@@ -1,0 +1,1617 @@
+:root {
+  --text-color: #251d28;
+  --main-color: #ffffff;
+  --main-color-2: rgb(207, 191, 175);
+  --main-color-3: #877e77;
+  --contrast-color: #84a065;
+
+  --main-radius: 15pt;
+  --main-padding: 10px;
+}
+
+body {
+  margin: 0;
+  font-family: "Varela Round", sans-serif;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(6, auto);
+  grid-template-areas:
+    "header header header"
+    "slider slider slider"
+    "banner banner banner"
+    "info info info"
+    "badges badges badges"
+    "footer footer footer";
+  color: var(--text-color);
+  text-align: center;
+}
+
+.galleri-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(8, auto);
+  grid-template-areas:
+    "header header header"
+    "introtitel introtitel introtitel"
+    "galleri galleri galleri"
+    "banner banner banner"
+    "visabild visabild visabild"
+    "info info info"
+    "badges badges badges"
+    "footer footer footer";
+  color: var(--text-color);
+  text-align: center;
+}
+
+.introtitel,
+.banner,
+.text,
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  grid-area: introtitel;
+}
+
+.introtitel p,
+.banner p,
+.text p,
+.info p {
+  font-size: 16pt;
+  font-weight: 400;
+  width: 80%;
+  padding: 1rem;
+}
+
+.text p {
+  width: 100%;
+}
+
+.info-visa-bild {
+  grid-area: visabild;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: var(--main-color-2);
+  padding: 2rem;
+  padding-left: 0;
+}
+
+.info-visa-bild img {
+  width: 30%;
+  margin-right: 10%;
+  border-radius: var(--main-radius);
+  border: solid;
+  border-color: var(--main-color-2);
+  box-shadow: 10px 10px var(--main-color-3);
+}
+
+h2 {
+  font-size: 30pt;
+  font-family: "Varela Round", sans-serif;
+}
+
+h3 {
+  font-size: 16pt;
+  font-family: "Varela Round", sans-serif;
+  font-weight: bold;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.galleri {
+  grid-area: galleri;
+  width: 100%;
+  padding: 1.5rem;
+}
+
+.galleri-bilder {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 1.5rem;
+  grid-template-areas:
+    "img-1 img-2 img-3 img-3"
+    "img-1 img-4 img-5 img-6"
+    "img-7 img-7 img-8 img-6";
+}
+
+.galleri-bilder a {
+  display: flex;
+  text-decoration: none;
+  width: 100%;
+  height: 25rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.lightbox:target {
+  display: block;
+}
+
+.lightbox span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#img1 span {
+  background-image: url("GalleriBilder/Valp01.jpg");
+}
+
+#img2 span {
+  background-image: url("GalleriBilder/Valp9.jpg");
+}
+
+#img3 span {
+  background-image: url("GalleriBilder/Valp03.jpg");
+}
+
+#img4 span {
+  background-image: url("GalleriBilder/Valp6.jpg");
+}
+
+#img5 span {
+  background-image: url("GalleriBilder/Valp8.jpg");
+}
+
+#img6 span {
+  background-image: url("GalleriBilder/Valp02.jpg");
+}
+
+#img7 span {
+  background-image: url("GalleriBilder/Valp04.jpg");
+}
+
+#img8 span {
+  background-image: url("GalleriBilder/Valp05.jpg");
+}
+
+.galleri-bilder a i {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 3rem;
+  position: relative;
+  padding: 1rem 3rem;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 0.4rem;
+  opacity: 0;
+  transition: opacity 0.5s;
+  z-index: 5;
+}
+
+.galleri-bilder a::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  border-radius: 15pt;
+  transition: opacity 0.5s;
+}
+
+.galleri-bilder a:hover i,
+.galleri-bilder a:hover::before {
+  opacity: 1;
+}
+
+.img-1 {
+  min-height: 51.5rem;
+  border-radius: var(--main-radius);
+  border: solid var(--main-color-2) 3px;
+  grid-area: img-1;
+  background-image: url("GalleriBilder/Valp01.jpg");
+}
+
+.img-2 {
+  grid-area: img-2;
+  border-radius: var(--main-radius);
+  border: solid var(--main-color-2) 3px;
+  background-image: url("GalleriBilder/Valp9.jpg");
+}
+
+.img-3 {
+  grid-area: img-3;
+  border-radius: var(--main-radius);
+  border: solid var(--main-color-2) 3px;
+  background-image: url("GalleriBilder/Valp03.jpg");
+}
+
+.img-4 {
+  grid-area: img-4;
+  border-radius: var(--main-radius);
+  border: solid var(--main-color-2) 3px;
+  background-image: url("GalleriBilder/Valp6.jpg");
+}
+
+.img-5 {
+  grid-area: img-5;
+  border-radius: var(--main-radius);
+  border: solid var(--main-color-2) 3px;
+  background-image: url("GalleriBilder/Valp8.jpg");
+}
+
+.img-6 {
+  min-height: 51.5rem;
+  border-radius: var(--main-radius);
+  border: solid var(--main-color-2) 3px;
+  grid-area: img-6;
+  background-image: url("GalleriBilder/Valp02.jpg");
+}
+
+.img-7 {
+  grid-area: img-7;
+  border-radius: var(--main-radius);
+  border: solid var(--main-color-2) 3px;
+  background-image: url("GalleriBilder/Valp04.jpg");
+}
+
+.img-8 {
+  grid-area: img-8;
+  border-radius: var(--main-radius);
+  border: solid var(--main-color-2) 3px;
+  background-image: url("GalleriBilder/Valp05.jpg");
+}
+
+header {
+  display: grid;
+  grid-area: header;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+    "logga logga logga"
+    "nav nav valpIntresse";
+  padding-bottom: var(--main-padding);
+  border-bottom: solid;
+  border-width: 5px;
+  border-color: var(--main-color-2);
+  font-family: "Varela Round", sans-serif;
+  font-weight: 600;
+}
+
+#selected::after {
+  width: 100%;
+}
+
+.logga {
+  text-align: center;
+  grid-area: logga;
+  background: var(--main-color);
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.logga a {
+  text-decoration: none;
+}
+
+.logga a img {
+  min-width: 150px;
+  width: 11%;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  grid-area: nav;
+  background: var(--main-color);
+}
+
+.header-nav a {
+  text-decoration: none;
+  color: var(--text-color);
+  min-width: font 50px;
+  font-size: 15pt;
+  position: relative;
+}
+
+.header-nav a::after {
+  content: "";
+  width: 0;
+  height: 5px;
+  background: var(--main-color-2);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: +30px;
+  transition: 0.2s;
+}
+
+.header-nav a:hover::after {
+  width: 100%;
+}
+
+.valpIntresse {
+  display: flex;
+  grid-area: valpIntresse;
+  text-decoration: none;
+  background: var(--main-color);
+  align-items: center;
+  justify-content: center;
+}
+
+.valpIntresse a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 16pt;
+  background-color: var(--main-color-2);
+  padding: 1vh 2vw 1vh 2vw;
+  border-radius: 20px;
+}
+
+#slider {
+  overflow: hidden;
+  grid-area: slider;
+  background: var(--main-color);
+  position: relative;
+}
+
+#slider figure {
+  position: relative;
+  width: 500%;
+
+  margin: 0;
+  left: 0;
+  animation: 20s slider infinite;
+}
+
+#slider figure img {
+  width: 20%;
+  float: left;
+  max-width: 100%;
+  min-height: 100%;
+}
+
+@keyframes slider {
+  0% {
+    left: 0;
+  }
+  20% {
+    left: 0%;
+  }
+  25% {
+    left: -100%;
+  }
+  45% {
+    left: -100%;
+  }
+  50% {
+    left: -200%;
+  }
+  70% {
+    left: -200%;
+  }
+  75% {
+    left: -300%;
+  }
+  95% {
+    left: -300%;
+  }
+  100% {
+    left: -400%;
+  }
+}
+
+.banner {
+  grid-area: banner;
+  background: var(--main-color);
+}
+
+.info {
+  grid-area: info;
+  background: var(--main-color);
+}
+
+.badges {
+  display: flex;
+  grid-area: badges;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+#badge1 {
+  grid-area: badge1;
+  background: var(--main-color);
+  padding: 1rem;
+}
+
+#badge1 img {
+  min-width: 100px;
+  width: 30%;
+  max-width: 200px;
+}
+
+#badge2 {
+  grid-area: badge2;
+  background: var(--main-color);
+  padding: 1rem;
+}
+
+#badge2 img {
+  min-width: 170px;
+  width: 50%;
+  max-width: 300px;
+}
+
+#badge3 {
+  grid-area: badge3;
+  background: var(--main-color);
+  padding: 1rem;
+}
+
+#badge3 img {
+  min-width: 100px;
+  width: 30%;
+  max-width: 200px;
+}
+
+footer {
+  display: grid;
+  grid-area: footer;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  grid-template-areas:
+    "footer-panels footer-panels footer-panels"
+    "copyright copyright copyright";
+  background: var(--main-color);
+  border-top: solid;
+  border-color: var(--main-color-2);
+  border-width: 0.5rem;
+}
+
+.footer-panels {
+  display: grid;
+  grid-area: footer-panels;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "valpkennel hundarValpar socialaMedier";
+  padding: 2rem;
+  margin-left: 20vw;
+  margin-right: 20vw;
+  margin-top: 3vh;
+}
+
+#valpkennel {
+  display: flex;
+  justify-content: left;
+  grid-area: valpkennel;
+}
+
+#hundarValpar {
+  display: flex;
+  justify-content: left;
+  grid-area: hundarValpar;
+}
+
+.footer-segment {
+  grid-area: valpKennel;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 2rem;
+}
+
+.footer-segment p {
+  font-weight: 800;
+  margin-left: 0.5rem;
+}
+
+.footer-segment a {
+  padding: 0.5rem;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+#socialaMedier {
+  display: flex;
+  flex-direction: column;
+  grid-area: socialaMedier;
+  justify-content: left;
+  width: 100%;
+  text-align: left;
+}
+
+#socialaRubrik {
+  font-weight: 800;
+  margin-bottom: 0.2rem;
+}
+
+#socialText {
+  font-weight: 400;
+}
+
+#socialaRubrik {
+  font-weight: 800;
+  margin-bottom: 0.2rem;
+}
+
+.social {
+  margin-top: 0.6rem;
+}
+
+.social a {
+  text-decoration: none;
+  color: var(--main-color-3);
+  margin-right: 0.3rem;
+}
+
+.hundarValpar {
+  grid-area: hundOchValp;
+  background: var(--main-color);
+}
+
+.socialaMedier {
+  grid-area: socialaMedier;
+  background: var(--main-color);
+}
+
+.copyright {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-area: copyright;
+  height: 7vh;
+  background: var(--main-color-2);
+}
+
+.intresse {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--text-color);
+  background-image: url("img/valp5.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 70%;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-width: 250px;
+  width: 30vw;
+  max-width: 450px;
+  padding: 40px;
+  position: absolute;
+  background: var(--text-color);
+  border-radius: 20pt;
+  text-align: center;
+}
+
+.box h2 {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.box input[type="förnamn"],
+.box input[type="efternamn"],
+.box input[type="email"] {
+  display: block;
+  border: 0;
+  background: none;
+  margin: 1rem auto;
+  text-align: center;
+  border: 2px solid #84a065;
+  padding: 14px 10px;
+  min-width: 150px;
+  width: 13vw;
+  max-width: 200px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+}
+
+.box input[type="förnamn"]:focus,
+.box input[type="efternamn"]:focus,
+.box input[type="email"]:focus {
+  min-width: 150px;
+  width: 15vw;
+  max-width: 250px;
+  border-color: var(--main-color-2);
+}
+
+.box input[type="submit"] {
+  display: block;
+  border: 0;
+  background: none;
+  margin: 1rem auto;
+  text-align: center;
+  border: 2px solid var(--main-color-2);
+  padding: 14px 10px;
+  width: 100px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.box input[type="submit"]:hover {
+  background: var(--main-color-2);
+}
+
+.tillbaka {
+  text-decoration: none;
+  opacity: 1;
+  z-index: 10;
+  color: var(--main-color);
+  margin-top: 1rem;
+  border-bottom: solid rgba(255, 255, 255, 0);
+  transition: 0.3s;
+}
+
+.tillbaka:hover {
+  border-bottom: solid rgba(255, 255, 255, 1);
+}
+
+.aboutus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  text-align: center;
+}
+
+.aboutus h2 {
+  margin-bottom: 2vh;
+}
+
+.aboutus p {
+  font-size: 15pt;
+}
+
+.kontakta-oss {
+  display: flex;
+  justify-content: center;
+  background-color: var(--text-color);
+  color: var(--main-color);
+  margin-top: 4rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-radius: 26px;
+  width: 40vw;
+  max-width: 500px;
+}
+
+.kontakta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.kontakta input[type="förnamn"],
+.kontakta input[type="efternamn"],
+.kontakta input[type="email"],
+.kontakta input[type="meddelande"] {
+  padding: 14px 12px;
+  outline: none;
+  border: none;
+  background: var(--main-color-2);
+  border: solid var(--main-color-3);
+  border-radius: 24px;
+  margin: 0.5rem 1rem 0.5rem 1rem;
+  width: 30vw;
+  max-width: 400px;
+}
+
+.kontakta input[type="submit"] {
+  padding: 14px 12px;
+  outline: none;
+  border: none;
+  background: var(--main-color-2);
+  border: solid var(--main-color-3);
+  border-radius: 24px;
+  margin-bottom: 1rem;
+  width: 15vw;
+  max-width: 250px;
+}
+
+.kontakta input[type="submit"]:hover {
+  padding: 14px 12px;
+  outline: none;
+  border: none;
+  background: var(--contrast-color);
+  border: solid var(--contrast-color);
+  border-radius: 24px;
+  margin-bottom: 1rem;
+  transition: 0.5s;
+}
+
+.kontakta input[type="förnamn"]:focus,
+.kontakta input[type="efternamn"]:focus,
+.kontakta input[type="email"]:focus,
+.kontakta input[type="meddelande"]:focus {
+  padding: 14px 12px;
+  outline: none;
+  border: none;
+  background: var(--main-color-2);
+  border: solid var(--contrast-color);
+  border-radius: 24px;
+  margin: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.kontakt-information {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1rem;
+}
+
+.kontakt-hjalp {
+  margin-right: 1rem;
+  margin-left: 5rem;
+}
+
+.kontakt-hjalp p {
+  font-size: 16pt;
+}
+
+.valpar-container,
+.hundar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.valpar-container p,
+.hundar-container p {
+  font-size: 16pt;
+  margin: 1rem 5vw 4rem 5vw;
+}
+
+.valpar-container h2,
+.hundar-container h2 {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.valp,
+.hund {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4rem;
+  border-top: solid var(--contrast-color) 10px;
+}
+
+.valp img,
+.hund img {
+  width: 30%;
+  border-radius: 200px;
+  border: solid var(--main-color-2);
+}
+
+.valp-text,
+.hund-text {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 50pt;
+}
+
+.valp-text h1,
+.hund-text h1 {
+  text-align: center;
+  font-family: "Cabin Sketch", sans-serif;
+  color: var(--main-color-3);
+  font-weight: 400;
+}
+
+.stamtavla {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4rem;
+  border-top: solid var(--contrast-color) 10px;
+}
+
+.stamtavla img {
+  width: 40%;
+  border-radius: 15px;
+}
+
+.stamtavla-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.stamtavla-text p {
+  font-size: 16pt;
+  margin: 1rem 5vw 1rem 5vw;
+}
+
+.stamtavla-text h2 {
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .body {
+    margin: 0;
+    font-family: "Varela Round", sans-serif;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    color: var(--text-color);
+    text-align: center;
+  }
+
+  header {
+    display: grid;
+    grid-area: header;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+      "logga logga logga"
+      "nav nav valpIntresse";
+    padding-bottom: 3px;
+    border-bottom: solid;
+    border-width: 5px;
+    border-color: var(--main-color-2);
+    font-family: "Varela Round", sans-serif;
+    font-weight: 600;
+  }
+
+  #selected::after {
+    width: 100%;
+  }
+
+  .logga {
+    text-align: center;
+    grid-area: logga;
+    background: var(--main-color);
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  .logga a {
+    text-decoration: none;
+  }
+
+  .logga a img {
+    min-width: 150px;
+    width: 11%;
+  }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    grid-area: nav;
+    background: var(--main-color);
+  }
+
+  .header-nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    min-width: font 50px;
+    font-size: 10pt;
+    position: relative;
+  }
+
+  .header-nav a::after {
+    content: "";
+    width: 0;
+    height: 5px;
+    background: var(--main-color-2);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: +30px;
+    transition: 0.2s;
+  }
+
+  .header-nav a:hover::after {
+    width: 100%;
+  }
+
+  .valpIntresse {
+    display: flex;
+    grid-area: valpIntresse;
+    text-decoration: none;
+    background: var(--main-color);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .valpIntresse a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 10pt;
+    background-color: var(--main-color-2);
+    padding: 1vh 2vw 1vh 2vw;
+    border-radius: 20px;
+  }
+
+  #slider {
+    overflow: hidden;
+    grid-area: slider;
+    background: var(--main-color);
+    position: relative;
+  }
+
+  #slider figure {
+    position: relative;
+    width: 500%;
+    margin: 0;
+    left: 0;
+    animation: 20s slider infinite;
+  }
+
+  #slider figure img {
+    width: 20%;
+    float: left;
+    max-width: 100%;
+    min-height: 100%;
+  }
+
+  @keyframes slider {
+    0% {
+      left: 0;
+    }
+    20% {
+      left: 0%;
+    }
+    25% {
+      left: -100%;
+    }
+    45% {
+      left: -100%;
+    }
+    50% {
+      left: -200%;
+    }
+    70% {
+      left: -200%;
+    }
+    75% {
+      left: -300%;
+    }
+    95% {
+      left: -300%;
+    }
+    100% {
+      left: -400%;
+    }
+  }
+
+  h2 {
+    font-size: 30pt;
+    font-family: "Varela Round", sans-serif;
+  }
+
+  h3 {
+    font-size: 16pt;
+    font-family: "Varela Round", sans-serif;
+    font-weight: bold;
+  }
+
+  .introtitel,
+  .banner,
+  .text,
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    grid-area: introtitel;
+  }
+
+  .introtitel p,
+  .banner p,
+  .text p,
+  .info p {
+    font-size: 12pt;
+    font-weight: 400;
+    width: 100%;
+    padding: 0.5rem;
+  }
+
+  .text p {
+    width: 60%;
+  }
+
+  .text {
+    background-color: var(--main-color-2);
+  }
+  .banner {
+    grid-area: banner;
+    background: var(--main-color);
+  }
+
+  .info {
+    grid-area: info;
+    background: var(--main-color);
+  }
+
+  .badges {
+    display: flex;
+    grid-area: badges;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  #badge1 {
+    grid-area: badge1;
+    background: var(--main-color);
+    padding: 1rem;
+  }
+
+  #badge1 img {
+    min-width: 100px;
+    width: 30%;
+    max-width: 200px;
+  }
+
+  #badge2 {
+    background: var(--main-color);
+    padding: 1rem;
+  }
+
+  #badge2 img {
+    min-width: 170px;
+    width: 50%;
+    max-width: 300px;
+  }
+
+  #badge3 {
+    background: var(--main-color);
+    padding: 1rem;
+  }
+
+  #badge3 img {
+    min-width: 100px;
+    width: 30%;
+    max-width: 200px;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: column;
+    grid-area: footer;
+    background: var(--main-color);
+    border-top: solid;
+    border-color: var(--main-color-2);
+    border-width: 0.5rem;
+  }
+
+  .footer-logga img {
+    width: 30%;
+  }
+
+  .footer-panels {
+    display: flex;
+    grid-area: footer-panels;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #valpkennel {
+    display: flex;
+    justify-content: left;
+    width: 100%;
+    margin-bottom: 3vh;
+  }
+
+  #hundarValpar {
+    display: flex;
+    justify-content: left;
+    width: 100%;
+    margin-bottom: 3vh;
+  }
+
+  .footer-segment {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: 10pt;
+  }
+
+  .footer-segment p {
+    font-weight: 800;
+    margin-left: 0.5rem;
+  }
+
+  .footer-segment a {
+    padding: 0.5rem;
+    text-decoration: none;
+    color: var(--text-color);
+  }
+
+  #socialaMedier {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    font-size: 10pt;
+    text-align: left;
+  }
+
+  #socialaRubrik {
+    font-weight: 800;
+    margin-bottom: 0.2rem;
+  }
+
+  #socialText {
+    font-weight: 400;
+  }
+
+  .social {
+    margin-top: 0.6rem;
+  }
+
+  .social a {
+    text-decoration: none;
+    color: var(--main-color-3);
+    margin-right: 0.3rem;
+  }
+
+  .copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: copyright;
+    background: var(--main-color-2);
+  }
+
+  .galleri-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, auto);
+    grid-template-areas:
+      "header"
+      "introtitel"
+      "galleri"
+      "banner"
+      "visabild"
+      "info"
+      "badges"
+      "footer";
+    color: var(--text-color);
+    text-align: center;
+  }
+
+  .introtitel,
+  .banner,
+  .text,
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    grid-area: introtitel;
+  }
+
+  .introtitel p,
+  .banner p,
+  .text p,
+  .info p {
+    font-size: 16pt;
+    font-weight: 400;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .info-visa-bild {
+    grid-area: visabild;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+
+    background-color: var(--main-color-2);
+  }
+
+  .info-visa-bild img {
+    width: 70%;
+    border-radius: var(--main-radius);
+    border: solid;
+    border-color: var(--main-color-2);
+    box-shadow: 10px 10px var(--main-color-3);
+    margin: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .galleri {
+    grid-area: galleri;
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .galleri-bilder {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, auto);
+    grid-gap: 1.5rem;
+    grid-template-areas:
+      "img-1"
+      "img-2"
+      "img-3"
+      "img-4"
+      "img-5"
+      "img-6"
+      "img-7"
+      "img-8";
+  }
+
+  .galleri-bilder a {
+    display: flex;
+    text-decoration: none;
+    width: 100%;
+    height: 25rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .lightbox:target {
+    display: block;
+  }
+
+  .lightbox span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  #img1 span {
+    grid-area: img1;
+    background-image: url("GalleriBilder/Valp01.jpg");
+  }
+
+  #img2 span {
+    background-image: url("GalleriBilder/Valp9.jpg");
+  }
+
+  #img3 span {
+    background-image: url("GalleriBilder/Valp03.jpg");
+  }
+
+  #img4 span {
+    background-image: url("GalleriBilder/Valp6.jpg");
+  }
+
+  #img5 span {
+    background-image: url("GalleriBilder/Valp8.jpg");
+  }
+
+  #img6 span {
+    background-image: url("GalleriBilder/Valp02.jpg");
+  }
+
+  #img7 span {
+    background-image: url("GalleriBilder/Valp04.jpg");
+  }
+
+  #img8 span {
+    background-image: url("GalleriBilder/Valp05.jpg");
+  }
+
+  .galleri-bilder a i {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 3rem;
+    position: relative;
+    padding: 1rem 3rem;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 0.4rem;
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 5;
+  }
+
+  .galleri-bilder a::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    border-radius: 15pt;
+    transition: opacity 0.5s;
+  }
+
+  .galleri-bilder a:hover i,
+  .galleri-bilder a:hover::before {
+    opacity: 1;
+  }
+
+  .img-1 {
+    min-height: 51.5rem;
+    border-radius: var(--main-radius);
+    grid-area: img-1;
+    background-image: url("GalleriBilder/Valp01.jpg");
+  }
+
+  .img-2 {
+    grid-area: img-2;
+    border-radius: var(--main-radius);
+    background-image: url("GalleriBilder/Valp9.jpg");
+  }
+
+  .img-3 {
+    grid-area: img-3;
+    border-radius: var(--main-radius);
+    background-image: url("GalleriBilder/Valp03.jpg");
+  }
+
+  .img-4 {
+    grid-area: img-4;
+    border-radius: var(--main-radius);
+    background-image: url("GalleriBilder/Valp6.jpg");
+  }
+
+  .img-5 {
+    grid-area: img-5;
+    border-radius: var(--main-radius);
+    background-image: url("GalleriBilder/Valp8.jpg");
+  }
+
+  .img-6 {
+    min-height: 51.5rem;
+    border-radius: var(--main-radius);
+    grid-area: img-6;
+    background-image: url("GalleriBilder/Valp02.jpg");
+  }
+
+  .img-7 {
+    grid-area: img-7;
+    border-radius: var(--main-radius);
+    background-image: url("GalleriBilder/Valp04.jpg");
+  }
+
+  .img-8 {
+    grid-area: img-8;
+    border-radius: var(--main-radius);
+    background-image: url("GalleriBilder/Valp05.jpg");
+  }
+  #selected::after {
+    width: 100%;
+  }
+
+  .kontakta-oss {
+    display: flex;
+    justify-content: center;
+    background-color: var(--text-color);
+    color: var(--main-color);
+    margin-top: 4rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 26px;
+    width: 40vw;
+    max-width: 500px;
+  }
+
+  .kontakta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .kontakta input[type="förnamn"],
+  .kontakta input[type="efternamn"],
+  .kontakta input[type="email"],
+  .kontakta input[type="meddelande"] {
+    padding: 14px 12px;
+    outline: none;
+    border: none;
+    background: var(--main-color-2);
+    border: solid var(--main-color-3);
+    border-radius: 24px;
+    margin: 0.5rem 1rem 0.5rem 1rem;
+    width: 30vw;
+    max-width: 400px;
+  }
+
+  .kontakta input[type="submit"] {
+    padding: 14px 12px;
+    outline: none;
+    border: none;
+    background: var(--main-color-2);
+    border: solid var(--main-color-3);
+    border-radius: 24px;
+    margin-bottom: 1rem;
+    width: 15vw;
+    max-width: 250px;
+  }
+
+  .kontakta input[type="submit"]:hover {
+    padding: 14px 12px;
+    outline: none;
+    border: none;
+    background: var(--contrast-color);
+    border: solid var(--contrast-color);
+    border-radius: 24px;
+    margin-bottom: 1rem;
+    transition: 0.5s;
+  }
+
+  .kontakta input[type="förnamn"]:focus,
+  .kontakta input[type="efternamn"]:focus,
+  .kontakta input[type="email"]:focus,
+  .kontakta input[type="meddelande"]:focus {
+    padding: 14px 12px;
+    outline: none;
+    border: none;
+    background: var(--main-color-2);
+    border: solid var(--contrast-color);
+    border-radius: 24px;
+    margin: 0.5rem 1rem 0.5rem 1rem;
+  }
+
+  .kontakt-information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .kontakt-hjalp {
+    margin: 4rem 0 4rem 0;
+  }
+
+  .kontakt-hjalp p {
+    font-size: 16pt;
+  }
+
+  .valpar-container,
+  .hundar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .valpar-container p,
+  .hundar-container p {
+    font-size: 16pt;
+    margin: 1rem 5vw 4rem 5vw;
+  }
+
+  .valpar-container h2,
+  .hundar-container h2 {
+    text-align: center;
+    margin-top: 4rem;
+  }
+
+  .valp,
+  .hund {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem;
+    border-top: solid var(--contrast-color) 10px;
+  }
+
+  .valp img,
+  .hund img {
+    width: 30%;
+    min-width: 250px;
+    border-radius: 200px;
+    border: solid var(--main-color-2);
+  }
+
+  .valp-text,
+  .hund-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .valp-text h1,
+  .hund-text h1 {
+    text-align: center;
+    font-family: "Cabin Sketch";
+    color: var(--main-color-3);
+    font-weight: 400;
+  }
+
+  .stamtavla {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem;
+    border-top: solid var(--contrast-color) 10px;
+  }
+
+  .stamtavla img {
+    width: 40%;
+    min-width: 280px;
+    border-radius: 15px;
+  }
+
+  .stamtavla-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stamtavla-text p {
+    font-size: 16pt;
+    margin: 1rem 5vw 1rem 5vw;
+  }
+
+  .stamtavla-text h2 {
+    text-align: center;
+  }
+}
